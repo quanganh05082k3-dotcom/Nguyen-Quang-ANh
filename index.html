@@ -1,117 +1,184 @@
 <!doctype html>
 <html lang="vi">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Gold Pulse | XAUUSD</title>
-<style>
-:root{--bg:#0d1117;--card:#161d27;--line:#2d3948;--gold:#f5bb3d;--text:#eef2f6;--muted:#91a0b0}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px Arial,sans-serif}
-main{max-width:1100px;margin:auto;padding:32px 20px}header{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);padding-bottom:22px}
-h1,h2{margin:0}.tag{color:var(--gold);font-size:11px;font-weight:bold;letter-spacing:.14em}
-button{background:#382a10;border:1px solid #936f29;color:#ffe39a;padding:11px 14px;border-radius:8px;font-weight:bold;cursor:pointer}
-.notice,.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px}.notice{margin:20px 0;color:#e7d6a9}
-.quotes,.main,.levels{display:grid;gap:14px}.quotes{grid-template-columns:repeat(3,1fr)}.main{grid-template-columns:1fr 1.3fr;margin-top:14px}
-.card span{display:block;color:var(--muted);font-size:11px;letter-spacing:.1em}.quote strong{display:block;font-size:28px;margin-top:8px}
-label{display:block;color:var(--muted);font-size:12px;margin:12px 0}input{display:block;width:100%;margin-top:5px;padding:11px;background:#0d1117;color:white;border:1px solid var(--line);border-radius:7px;font-size:16px}
-.badge{display:inline-block;padding:8px 11px;border-radius:99px;font-weight:bold;font-size:12px}.BUY{background:#123222;color:#6ee7a4}.SELL{background:#35181e;color:#ff8290}.WAIT{background:#302615;color:#ffd486}
-.levels{grid-template-columns:repeat(2,1fr);margin-top:16px}.levels div{background:#0d1117;padding:12px;border-radius:8px}.levels b{font-size:19px}
-.small{color:var(--muted);font-size:13px;line-height:1.5}.warn{color:#dfbfc2;font-size:12px}
-@media(max-width:700px){header{align-items:flex-start;flex-direction:column}.quotes,.main{grid-template-columns:1fr}}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Aurum Desk | XAUUSD</title>
+  <style>
+    :root{--bg:#080b12;--card:#111925;--line:#29364b;--txt:#f3f7fb;--muted:#96a4b9;--gold:#f4bd4a;--green:#42dc91;--red:#ff7182}
+    *{box-sizing:border-box}body{margin:0;background:radial-gradient(800px 450px at 0 -10%,#4a320d77,transparent 62%),radial-gradient(700px 400px at 100% 0,#17315a77,transparent 58%),var(--bg);color:var(--txt);font:14px Arial,sans-serif}
+    .wrap{max-width:1400px;margin:auto;padding:24px}.top{display:flex;justify-content:space-between;align-items:center;gap:18px;padding-bottom:22px;border-bottom:1px solid var(--line)}
+    .brand{display:flex;align-items:center;gap:13px}.logo{width:43px;height:43px;display:grid;place-items:center;border-radius:14px;border:1px solid #b98c35;background:linear-gradient(145deg,#46320c,#151009);font-size:23px;color:#ffe39a;font-weight:bold}
+    .kicker,.label{font-size:10px;letter-spacing:.14em;color:var(--muted);font-weight:bold}.brand h1{font-size:22px;margin:3px 0 0}.live{display:flex;align-items:center;gap:8px;color:#cbd6e5;font-size:12px}
+    .dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 10px var(--green)}button{cursor:pointer;border:1px solid #8e6a29;border-radius:10px;padding:11px 14px;background:linear-gradient(#443212,#251b0a);color:#ffe7a5;font-weight:bold}
+    button:hover{border-color:#d4a544}.notice{margin:18px 0;padding:13px;border:1px solid #5a4822;border-radius:10px;background:#211b10;color:#e6d3a6;font-size:12px}
+    .summary{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.card{background:linear-gradient(145deg,#151e2bdd,#0d131ddd);border:1px solid var(--line);border-radius:15px;box-shadow:0 14px 40px #0005}
+    .metric{padding:17px}.metric strong{display:block;font-size:27px;margin:8px 0 4px}.metric small,.sub{color:var(--muted);font-size:11px}
+    .main{display:grid;grid-template-columns:1.18fr .82fr;gap:12px;margin-top:12px}.panel{padding:17px}.head{display:flex;justify-content:space-between;gap:12px}.head h2{font-size:16px;margin:0}
+    .chart{height:440px}.chart iframe{width:100%;height:390px;border:0;margin-top:12px}.badge{display:inline-block;margin-top:25px;padding:8px 11px;border:1px solid #806322;border-radius:99px;background:#3a2d11;color:#ffe099;font-size:11px;font-weight:bold;letter-spacing:.1em}
+    .bias h2{font-size:25px;margin:16px 0 8px}.bias p{line-height:1.6;color:var(--muted)}.bar{height:7px;background:#26344a;border-radius:99px;margin:8px 0;overflow:hidden}.bar i{display:block;width:50%;height:100%;background:linear-gradient(90deg,#d89d2d,#ffdd78)}
+    .wait{margin-top:24px;padding-top:15px;border-top:1px solid var(--line);color:var(--muted);font-size:11px}.wait b{display:block;color:white;font-size:18px;margin-top:5px}
+    .plans{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}.plan{padding:17px;border-top:2px solid #247e59}.plan.sell{border-top-color:#984150}.plan h2{font-size:17px;margin:4px 0}.buytxt{color:var(--green)}.selltxt{color:var(--red)}
+    .planhead{display:flex;justify-content:space-between;gap:10px}.levels{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:18px 0}.level{border-top:1px solid #2d3a4f;padding-top:8px}.level span{display:block;color:var(--muted);font-size:9px;font-weight:bold;letter-spacing:.09em}.level b{display:block;font-size:15px;margin-top:5px}
+    footer{border-top:1px solid var(--line);padding-top:12px;color:var(--muted);font-size:11px;line-height:1.5}.tools{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:12px}
+    label{display:block;margin-top:13px;color:var(--muted);font-size:11px;font-weight:bold}.fields{display:grid;grid-template-columns:1fr 1fr;gap:10px}input{width:100%;margin-top:6px;padding:10px;background:#090e16;color:white;border:1px solid #304057;border-radius:9px;font-size:14px}
+    .secondary{margin-top:14px;background:#151f2d;border-color:#3a4960;color:#d3ddec}.risk{margin-top:14px;padding:12px;border-radius:10px;background:#0b111b;line-height:1.7;color:#cdd6e5}.risk b{color:#ffe296}.risk span{font-size:11px;color:var(--muted)}
+    .check{display:flex;gap:9px;padding:10px 0;border-bottom:1px solid #27354a;color:#cbd5e5;font-size:12px}.check input{width:auto;margin:0;accent-color:var(--gold)}.foot{color:#79889d;line-height:1.55;font-size:11px;margin:18px 3px}
+    @media(max-width:900px){.main,.tools{grid-template-columns:1fr}.chart{height:380px}.chart iframe{height:330px}}@media(max-width:600px){.wrap{padding:15px}.top{align-items:flex-start;flex-direction:column}.summary,.plans{grid-template-columns:1fr 1fr}.levels{grid-template-columns:1fr 1fr}.fields{grid-template-columns:1fr}}
+  </style>
 </head>
 <body>
-<main>
-<header>
-  <div><p class="tag">GOLD PULSE / ON-DEMAND ANALYSIS</p><h1>XAUUSD Decision Desk</h1></div>
-  <button id="refresh">Cập nhật giá + đề xuất</button>
-</header>
+  <main class="wrap">
+    <header class="top">
+      <div class="brand">
+        <div class="logo">A</div>
+        <div><div class="kicker">AURUM DECISION DESK</div><h1>XAUUSD Trade Planner</h1></div>
+      </div>
+      <div class="live"><i class="dot"></i> Auto refresh 30s <button id="refresh">Cap nhat gia</button></div>
+    </header>
 
-<p class="notice" id="source">Bấm nút để lấy giá spot mới và tính lại kịch bản.</p>
+    <div class="notice" id="notice">
+      Dang lay gia tham chieu. Muon tinh dung theo Exness, hay nhap Bid/Ask tu terminal.
+    </div>
 
-<section class="quotes">
-  <article class="card quote"><span>BID</span><strong id="bid">--</strong></article>
-  <article class="card quote"><span>ASK</span><strong id="ask">--</strong></article>
-  <article class="card quote"><span>SPREAD</span><strong id="spread">--</strong></article>
-</section>
+    <section class="summary">
+      <article class="card metric"><span class="label">REFERENCE MID</span><strong id="mid">--</strong><small id="source">Reference feed</small></article>
+      <article class="card metric"><span class="label">BID</span><strong id="bid">--</strong><small>Gia ban</small></article>
+      <article class="card metric"><span class="label">ASK</span><strong id="ask">--</strong><small>Gia mua</small></article>
+      <article class="card metric"><span class="label">SPREAD</span><strong id="spread">--</strong><small>Kiem tra tren Exness</small></article>
+    </section>
 
-<section class="main">
-  <article class="card">
-    <p class="tag">GIÁ EXNESS THỦ CÔNG</p>
-    <h2>Nhập Bid / Ask</h2>
-    <label>Bid Exness<input id="bidInput" type="number" step="0.01"></label>
-    <label>Ask Exness<input id="askInput" type="number" step="0.01"></label>
-    <button id="manual">Phân tích giá Exness</button>
-    <p class="small">Nhập Bid/Ask từ Exness để TP/SL khớp với giá tài khoản của bạn.</p>
-  </article>
+    <section class="main">
+      <article class="card panel chart">
+        <div class="head"><h2>Bieu do XAUUSD</h2><span class="sub">OANDA / TradingView - chi de xem cau truc gia</span></div>
+        <iframe src="https://s.tradingview.com/widgetembed/?symbol=OANDA%3AXAUUSD&interval=15&hidesidetoolbar=0&symboledit=0&saveimage=0&toolbarbg=%23111824&theme=dark&style=1&locale=vi_VN"></iframe>
+      </article>
 
-  <article class="card">
-    <p class="tag">ĐỀ XUẤT KỊCH BẢN</p>
-    <span class="badge WAIT" id="side">WAIT</span>
-    <h2 id="reason" style="margin-top:14px">Đang chờ giá</h2>
-    <div class="levels" id="levels"></div>
-    <p class="warn">Chỉ mang tính tham khảo. Kiểm tra tin tức và giá Exness trước khi đặt lệnh.</p>
-  </article>
-</section>
-</main>
+      <article class="card panel bias">
+        <div class="kicker">KHUYEN NGHI THEO QUY TAC</div>
+        <div class="badge">● WAIT / CONDITIONAL</div>
+        <h2>Cho nen M15 xac nhan</h2>
+        <p>Khong vao lenh trong vung cho. Chi dung kich ban Buy hoac Sell khi nen M15 dong qua muc kich hoat va khong co tin manh sap cong bo.</p>
+        <div style="margin-top:25px"><span class="label">DO TIN CAY QUY TAC</span><div class="bar"><i></i></div><small class="sub">50% - khong phai tin hieu chac thang</small></div>
+        <div class="wait">VUNG KHONG GIAO DICH<b id="waitZone">--</b></div>
+      </article>
+    </section>
 
-<script>
-const format=n=>Number(n).toLocaleString("en-US",{minimumFractionDigits:2,maximumFractionDigits:2});
-let bid=0, ask=0;
+    <section class="plans">
+      <article class="card plan">
+        <div class="planhead"><div><div class="kicker buytxt">▲ KICH BAN 01</div><h2>BUY breakout</h2></div><small class="sub" id="buyNote">Cho gia</small></div>
+        <div class="levels" id="buyLevels"></div>
+        <footer>Chi can nhac sau nen M15 xac nhan. TP1 la moc chot mot phan.</footer>
+      </article>
+      <article class="card plan sell">
+        <div class="planhead"><div><div class="kicker selltxt">▼ KICH BAN 02</div><h2>SELL breakdown</h2></div><small class="sub" id="sellNote">Cho gia</small></div>
+        <div class="levels" id="sellLevels"></div>
+        <footer>Khong duoi gia khi nen da chay xa Entry. Dat SL ngay khi mo lenh.</footer>
+      </article>
+    </section>
 
-function analyze(){
-  const p=ask;
-  let side="WAIT", reason="Giá trong vùng chờ 4,020 - 4,085", levels=[];
+    <section class="tools">
+      <article class="card panel">
+        <div class="head"><h2>Nhap gia Exness thuc te</h2><small>Uu tien cach nay</small></div>
+        <p class="sub">Dan Bid/Ask dang hien thi tren Exness. Entry, SL va TP se tinh lai theo gia cua ban.</p>
+        <div class="fields">
+          <label>Exness Bid<input id="manualBid" type="number" step="0.01" placeholder="Vi du: 4130.20"></label>
+          <label>Exness Ask<input id="manualAsk" type="number" step="0.01" placeholder="Vi du: 4130.50"></label>
+        </div>
+        <button id="manual" style="margin-top:14px">Phan tich gia Exness</button>
+        <button class="secondary" id="reference">Dung gia tham chieu</button>
+      </article>
 
-  if(p>=4085){
-    side="BUY";
-    reason="Xác nhận M15 trên 4,085: ưu tiên kịch bản mua";
-    levels=[["Entry",p],["Stop loss",p-17],["TP 1",p+25],["TP 2",p+45]];
-  } else if(p<=4020){
-    side="SELL";
-    reason="Xác nhận M15 dưới 4,020: ưu tiên kịch bản bán";
-    levels=[["Entry",p],["Stop loss",p+15],["TP 1",p-20],["TP 2",p-45]];
-  }
+      <article class="card panel">
+        <div class="head"><h2>Gioi han rui ro</h2><small>Khong tu de xuat lot</small></div>
+        <div class="fields">
+          <label>Von tai khoan USD<input id="equity" type="number" value="1000"></label>
+          <label>Rui ro moi lenh %<input id="risk" type="number" step="0.1" value="1"></label>
+        </div>
+        <div class="risk" id="riskResult">Nhap gia de tinh gioi han rui ro.</div>
+      </article>
 
-  document.querySelector("#bid").textContent=format(bid);
-  document.querySelector("#ask").textContent=format(ask);
-  document.querySelector("#spread").textContent=format(ask-bid);
-  document.querySelector("#side").textContent=side;
-  document.querySelector("#side").className="badge "+side;
-  document.querySelector("#reason").textContent=reason;
-  document.querySelector("#levels").innerHTML=levels.map(x=>
-    `<div><span>${x[0]}</span><b>${format(x[1])}</b></div>`
-  ).join("");
-}
+      <article class="card panel">
+        <div class="head"><h2>Truoc khi vao lenh</h2><small>Checklist</small></div>
+        <label class="check"><input type="checkbox"> Da xem lich tin USD/Fed trong 60 phut toi.</label>
+        <label class="check"><input type="checkbox"> Nen M15 da dong xac nhan.</label>
+        <label class="check"><input type="checkbox"> SL duoc dat ngay khi mo lenh.</label>
+        <label class="check"><input type="checkbox"> Da kiem tra Bid/Ask tren Exness.</label>
+      </article>
+    </section>
 
-async function updatePrice(){
-  const button=document.querySelector("#refresh");
-  button.textContent="Đang cập nhật...";
-  try{
-    const response=await fetch("https://api.gold-api.com/price/XAU?x="+Date.now());
-    const data=await response.json();
-    bid=data.price-0.15;
-    ask=data.price+0.15;
-    document.querySelector("#bidInput").value=bid;
-    document.querySelector("#askInput").value=ask;
-    document.querySelector("#source").textContent=
-      "Giá spot tham chiếu cập nhật lúc "+new Date(data.updatedAt).toLocaleTimeString("vi-VN")+
-      ". Đây chưa phải Bid/Ask Exness.";
-    analyze();
-  }catch{
-    document.querySelector("#source").textContent="Không lấy được giá. Hãy nhập Bid/Ask Exness thủ công.";
-  }finally{
-    button.textContent="Cập nhật giá + đề xuất";
-  }
-}
+    <p class="foot">
+      Cong cu lap ke hoach giao duc, khong tu dong dat lenh va khong phai khuyen nghi dau tu ca nhan.
+      Gia tham chieu co the lech Exness do spread, loai tai khoan va do tre. Luon uu tien gia trong terminal Exness.
+    </p>
+  </main>
 
-document.querySelector("#refresh").onclick=updatePrice;
-document.querySelector("#manual").onclick=()=>{
-  bid=Number(document.querySelector("#bidInput").value);
-  ask=Number(document.querySelector("#askInput").value);
-  document.querySelector("#source").textContent="Đã phân tích theo Bid/Ask Exness bạn nhập.";
-  analyze();
-};
-</script>
+  <script>
+    const state={bid:0,ask:0,manual:false};
+    const $=id=>document.getElementById(id);
+    const fmt=n=>Number(n).toLocaleString("en-US",{minimumFractionDigits:2,maximumFractionDigits:2});
+
+    function levels(x){
+      return [["ENTRY",x.entry],["STOP LOSS",x.sl],["TP 1",x.tp1],["TP 2",x.tp2]]
+        .map(([name,value])=>`<div class="level"><span>${name}</span><b>${fmt(value)}</b></div>`).join("");
+    }
+
+    function calculate(){
+      if(!state.bid||!state.ask)return;
+      const mid=(state.bid+state.ask)/2;
+      const u=Math.max(mid*.004,12);
+
+      const buy={entry:state.ask+u*.30,sl:state.ask-u*.70,tp1:state.ask+u*1.05,tp2:state.ask+u*1.75};
+      const sell={entry:state.bid-u*.30,sl:state.bid+u*.70,tp1:state.bid-u*1.05,tp2:state.bid-u*1.75};
+
+      $("mid").textContent=fmt(mid);
+      $("bid").textContent=fmt(state.bid);
+      $("ask").textContent=fmt(state.ask);
+      $("spread").textContent=fmt(state.ask-state.bid);
+      $("source").textContent=state.manual?"Gia Exness ban nhap":"Reference spot feed";
+      $("buyLevels").innerHTML=levels(buy);
+      $("sellLevels").innerHTML=levels(sell);
+      $("buyNote").textContent="Kich hoat tren "+fmt(buy.entry);
+      $("sellNote").textContent="Kich hoat duoi "+fmt(sell.entry);
+      $("waitZone").textContent=fmt(sell.entry)+" - "+fmt(buy.entry);
+
+      const equity=Number($("equity").value)||0;
+      const risk=Number($("risk").value)||0;
+      const allowed=equity*risk/100;
+      $("riskResult").innerHTML=`Rui ro toi da: <b>$${fmt(allowed)}</b><br><span>Khong tinh lot vi contract size XAUUSD tuy loai tai khoan. Dieu chinh lot trong Exness de lo tai SL khong vuot muc nay.</span>`;
+    }
+
+    async function refresh(){
+      const btn=$("refresh");
+      btn.disabled=true; btn.textContent="Dang cap nhat...";
+      try{
+        const res=await fetch("https://api.gold-api.com/price/XAU?x="+Date.now());
+        if(!res.ok)throw new Error();
+        const data=await res.json();
+        state.bid=Number(data.price)-.15;
+        state.ask=Number(data.price)+.15;
+        state.manual=false;
+        $("notice").textContent="Gia tham chieu cap nhat luc "+new Date(data.updatedAt||Date.now()).toLocaleTimeString("vi-VN")+". Day khong phai Bid/Ask Exness.";
+        calculate();
+      }catch{
+        $("notice").textContent="Khong lay duoc gia tham chieu. Hay nhap Bid/Ask Exness thu cong.";
+      }finally{
+        btn.disabled=false; btn.textContent="Cap nhat gia";
+      }
+    }
+
+    $("manual").onclick=()=>{
+      const bid=Number($("manualBid").value),ask=Number($("manualAsk").value);
+      if(!bid||!ask||ask<bid){alert("Nhap Bid va Ask hop le. Ask phai lon hon hoac bang Bid.");return}
+      state.bid=bid; state.ask=ask; state.manual=true;
+      $("notice").textContent="Dang dung gia Exness ban nhap luc "+new Date().toLocaleTimeString("vi-VN")+".";
+      calculate();
+    };
+
+    $("reference").onclick=refresh;
+    ["equity","risk"].forEach(id=>$(id).addEventListener("input",calculate));
+    refresh();
+    setInterval(()=>{if(!state.manual)refresh()},30000);
+  </script>
 </body>
 </html>
